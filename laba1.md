@@ -8,8 +8,7 @@
 <img width="1280" height="492" alt="5997076863227989427 (1)" src="https://github.com/user-attachments/assets/82cdf274-8909-4610-b321-66aa2482330d" />
 <img width="1920" height="1008" alt="497e9952-08e0-4ade-8117-d46424267ab9" src="https://github.com/user-attachments/assets/6f2474d6-f89e-4646-8929-70e817ac7abf" />
 
-
-
+---
 
 ## Evidence Mapping Table
 | Evidence (Raw Log) | Rule | MITRE Technique | Tactic | Uncertainty / Limitations |
@@ -30,11 +29,11 @@
 
 * **Experiment C4 (Adding a second network scan):**
   Finally, I added a new line that explicitly said "Network scan detected" from another new IP (192.0.2.77). I predicted the system would catch the text string and add another T1046 alert. A second Medium severity T1046 finding appeared on the dashboard, increasing the total findings to 3.
-
-  ## Simulator Observation
+---
+## Simulator Observation
   When the simulator was running, the total finding count continuously increased over time as new automated events were appended to the log. The simulator is less reproducible than controlled manual experiments because it generates random, unpredictable synthetic events (such as varied IPs and attack patterns) at set intervals, constantly changing the baseline data before exact measurements can be manually verified.
-
-  ## SOC Analyst Narrative
+---
+## SOC Analyst Narrative
 
 In this lab, I acted as a SOC analyst reviewing the `security.log` file. Looking at the raw data, the facts are just lines of text. For example, I saw three lines stating "Failed password" from the IP address 172.18.0.5, and another line explicitly saying "Network scan detected" from 172.18.0.7. Based on its rules, the detector flagged these as T1110 (Brute Force) and T1046 (Network Service Discovery) activities.
 However, it is important to separate these facts from interpretation. The log only proves that three login attempts failed, not that a malicious attacker was trying to brute-force the system. It could simply be a legitimate user who forgot their password. Similarly, the log just contains the text string "Network scan detected"; we don't have the actual network packets to verify if a real scan happened. As an analyst, I learned that these alerts are just indicators that require further investigation, not absolute proof of a successful cyber attack.
